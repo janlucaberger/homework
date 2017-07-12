@@ -22,15 +22,19 @@ class Simon
     show_sequence
     require_sequence
     add_random_color
+<<<<<<< HEAD
     unless @game_over
       round_success_message
       @sequence_length += 1
     end
+=======
+>>>>>>> 9d5afd0baa13245d239426d0b4a44526793b8e0f
   end
 
   def show_sequence
     add_random_color
     @seq.each do |el|
+<<<<<<< HEAD
       sleep 0.5
       puts el
       sleep 1
@@ -38,10 +42,17 @@ class Simon
       sleep 1
     end
 
+=======
+      puts el
+      sleep 1
+      system('clear')
+    end
+>>>>>>> 9d5afd0baa13245d239426d0b4a44526793b8e0f
   end
 
   def require_sequence
     puts "Enter the sequence you just saw"
+<<<<<<< HEAD
     @seq.each do |color|
       user_in = gets.chomp
       if color[0] != user_in
@@ -50,6 +61,9 @@ class Simon
       end
     end
     sleep 1
+=======
+    color = gets.chomp
+>>>>>>> 9d5afd0baa13245d239426d0b4a44526793b8e0f
   end
 
   def add_random_color
