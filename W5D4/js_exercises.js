@@ -116,9 +116,13 @@ class Elephant {
    };
 
    play() {
+     debugger;
      let trick = this.tricks[Math.floor(Math.random()*this.tricks.length)]
      console.log(trick);
    };
+
+
+
 }
 
 // Elephant.prototype.
