@@ -14,29 +14,22 @@ class Calculator extends React.Component{
     this.setNum2 = this.setNum2.bind(this)
     this.performOperation = this.performOperation.bind(this)
     this.clearInput = this.clearInput.bind(this)
+    this.setNum = this.setNum.bind(this)
   }
 
-  setNum1(e) {
-    const number = e.currentTarget.value
-    if(isNaN(number)){
-      this.numError(number)
-    } else {
-      this.setState({
-        currentError: "",
-        num1: e.currentTarget.value
-      })
-    }
-  }
+  setNum(inputField) {
+    let self = this;
 
-  setNum2(e) {
-    const number = e.currentTarget.value
-    if(isNaN(number)){
-      this.numError(number)
-    } else {
-      this.setState({
-        currentError: "",
-        num2: e.currentTarget.value
-      })
+    return (e) => {
+      const number = e.currentTarget.value
+      if(isNaN(number)){
+        self.numError(number)
+      } else {
+        self.setState({
+          currentError: "",
+          [inputField]: e.currentTarget.value
+        })
+      }
     }
   }
 
@@ -69,8 +62,8 @@ class Calculator extends React.Component{
     return (
       <div>
         <h1>{this.state.result}</h1>
-        <input onChange={this.setNum1} value={this.state.num1}></input>
-        <input onChange={this.setNum2} value={this.state.num2}></input>
+        <input onChange={this.setNum("num1")} value={this.state.num1}></input>
+        <input onChange={this.setNum("num2")} value={this.state.num2}></input>
         <br />
         <button onClick={this.performOperation("+")}>+</button>
         <button onClick={this.performOperation("-")}>-</button>
