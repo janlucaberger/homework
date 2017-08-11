@@ -17,14 +17,27 @@ class Calculator extends React.Component{
   }
 
   setNum1(e) {
-    this.setState({
-      num1: e.currentTarget.value
-    })
+    const number = e.currentTarget.value
+    if(isNaN(number)){
+      this.numError(number)
+    } else {
+      this.setState({
+        currentError: "",
+        num1: e.currentTarget.value
+      })
+    }
   }
+
   setNum2(e) {
-    this.setState({
-      num2: e.currentTarget.value
-    })
+    const number = e.currentTarget.value
+    if(isNaN(number)){
+      this.numError(number)
+    } else {
+      this.setState({
+        currentError: "",
+        num2: e.currentTarget.value
+      })
+    }
   }
 
   performOperation(operation){
@@ -41,7 +54,14 @@ class Calculator extends React.Component{
     this.setState({
       num1: "",
       num2: "",
-      result: 0
+      result: 0,
+      currentError: ""
+    })
+  }
+
+  numError(inp){
+    this.setState({
+      currentError:`${inp} is not a number`
     })
   }
 
@@ -59,6 +79,7 @@ class Calculator extends React.Component{
         <br/>
         <br/>
         <button onClick={this.clearInput}>CLEAR</button>
+        <h1>{this.state.currentError}</h1>
       </div>
     );
   }

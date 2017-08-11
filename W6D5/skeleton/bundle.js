@@ -9795,16 +9795,28 @@ var Calculator = function (_React$Component) {
   _createClass(Calculator, [{
     key: "setNum1",
     value: function setNum1(e) {
-      this.setState({
-        num1: e.currentTarget.value
-      });
+      var number = e.currentTarget.value;
+      if (isNaN(number)) {
+        this.numError(number);
+      } else {
+        this.setState({
+          currentError: "",
+          num1: e.currentTarget.value
+        });
+      }
     }
   }, {
     key: "setNum2",
     value: function setNum2(e) {
-      this.setState({
-        num2: e.currentTarget.value
-      });
+      var number = e.currentTarget.value;
+      if (isNaN(number)) {
+        this.numError(number);
+      } else {
+        this.setState({
+          currentError: "",
+          num2: e.currentTarget.value
+        });
+      }
     }
   }, {
     key: "performOperation",
@@ -9825,7 +9837,15 @@ var Calculator = function (_React$Component) {
       this.setState({
         num1: "",
         num2: "",
-        result: 0
+        result: 0,
+        currentError: ""
+      });
+    }
+  }, {
+    key: "numError",
+    value: function numError(inp) {
+      this.setState({
+        currentError: inp + " is not a number"
       });
     }
   }, {
@@ -9868,6 +9888,11 @@ var Calculator = function (_React$Component) {
           "button",
           { onClick: this.clearInput },
           "CLEAR"
+        ),
+        _react2.default.createElement(
+          "h1",
+          null,
+          this.state.currentError
         )
       );
     }
